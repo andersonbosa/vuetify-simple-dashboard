@@ -1,9 +1,12 @@
 # vuetify-simple-dashboard
 
 - **Inspiration**: https://www.codeply.com/p/XI6uZlkGMy
-- Purpose is to study :] <!-- always :D -->
+- Purpose is to study 🧙 <!-- always :D -->
+- vue3 plugins: https://awesomejs.dev/for/vue-cli/
+
 
 ---
+
 
 ### Scripts
 
