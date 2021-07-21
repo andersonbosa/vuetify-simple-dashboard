@@ -1,19 +1,25 @@
-module.exports = {
+const isProduction = process.env.NODE_ENV === 'production'
+
+const productionCfg = {}
+
+const developmentCfg = {
+  extends: [],
+
+  rules: {}
+}
+
+const commonCfg = {
   root: true,
+
   env: {
-    node: true
+    node: true,
+    browser: true
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard'
-  ],
+
   parserOptions: {
     parser: 'babel-eslint'
   },
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
-  },
+
   overrides: [
     {
       files: [
@@ -24,5 +30,24 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+
+  extends: [
+    'plugin:vue/vue3-essential',
+    '@vue/standard'
+  ],
+
+  rules: {
+    'no-console': isProduction ? 'warn' : 'off',
+    'no-debugger': isProduction ? 'warn' : 'off'
+  }
 }
+
+function environmentByCfg () {
+  if (isProduction) {
+    return Object.assign(commonCfg, productionCfg)
+  }
+  return Object.assign(commonCfg, developmentCfg)
+}
+
+module.exports = environmentByCfg()
